@@ -26,7 +26,7 @@
 
 <div class="container">
 
-    <h1>Laravel 5 - Stripe Payment Gateway Integration Example <br/> ItSolutionStuff.com</h1>
+    <h1>Test Project</h1>
 
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
