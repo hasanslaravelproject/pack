@@ -31,7 +31,7 @@ Route::post('clients/create', [\App\Http\Controllers\ClientController::class, 'c
 Route::get('clients/edit/{id}', [\App\Http\Controllers\ClientController::class, 'edit']);
 Route::post('clients/update', [\App\Http\Controllers\ClientController::class, 'update']);
 Route::post('clients/delete', [\App\Http\Controllers\ClientController::class, 'delete']);
-Route::get('clients/status/{id}', [\App\Http\Controllers\ClientController::class, 'status']);
+//Route::get('clients/status/{id}', [\App\Http\Controllers\ClientController::class, 'status']);
 
-Route::get('stripe', [\App\Http\Controllers\StripePaymentController::class, 'stripe']);
+Route::get('stripe/{id}', [\App\Http\Controllers\StripePaymentController::class, 'stripe']);
 Route::post('stripe', [\App\Http\Controllers\StripePaymentController::class, 'stripePost'])->name('stripe.post');

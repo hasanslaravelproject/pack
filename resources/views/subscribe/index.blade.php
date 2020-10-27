@@ -24,7 +24,7 @@ blade
           <p class="card-text">{{ $item->price }}</p>
         </div>
         <div class="card-footer">
-            <a href="{{ URL::to('subscribe/create/'.$item->id) }}"><button class="btn btn-primary">Subscribe</button></a>
+            <a href="{{ URL::to('stripe/'.$item->id) }}"><button class="btn btn-primary">Subscribe</button></a>
         </div>
       </div>
       </div>
