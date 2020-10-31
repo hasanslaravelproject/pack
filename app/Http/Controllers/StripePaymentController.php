@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Client;
 use App\Models\Subscription;
 use Illuminate\Http\Request;
+
 use Session;
 use Stripe;
 
@@ -16,10 +17,10 @@ class StripePaymentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function stripe($id)
+    public function stripe($total)
     {
 
-        session(['pack_id' => $id]);
+        session(['total' => $total]);
         return view('stripe');
     }
 
@@ -34,16 +35,15 @@ class StripePaymentController extends Controller
         Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
         $pack = Subscription::where('id',session('pack_id'))->first();
         $s =Stripe\Charge::create ([
-                "amount" => $pack->price *100,
+                "amount" => session('total') *100,
                 "currency" => "usd",
                 "source" => $request->stripeToken,
                 "description" => "Test payment.",
                 "metadata" => [
-                    "pack_id" => session('pack_id'),
-                    "cli_id" => session('cli_id'),
+                    "total" => session('total'),
                 ],
         ]);
-
+/*
        if ($s){
            $hour = $pack->validity * 24;
            $expireday = date("Y-m-d H:i:s", strtotime('+'.$hour.' hours'));
@@ -53,8 +53,8 @@ class StripePaymentController extends Controller
            ]);
        }
 
-
-        Session::flash('success', 'Payment successful!');
+*/
+        Session::flush();
         return redirect('clients');
 
 

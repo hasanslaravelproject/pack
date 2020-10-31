@@ -13,9 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+/* Route::get('/', function () {
+    return view('backend.dashboard.admin');
+}); */
 Route::get('subscriptionpacks', [\App\Http\Controllers\SubscriptionController::class, 'index']);
 
 Route::post('subscriptionpacks/create', [\App\Http\Controllers\SubscriptionController::class, 'create']);
@@ -33,5 +33,16 @@ Route::post('clients/update', [\App\Http\Controllers\ClientController::class, 'u
 Route::post('clients/delete', [\App\Http\Controllers\ClientController::class, 'delete']);
 //Route::get('clients/status/{id}', [\App\Http\Controllers\ClientController::class, 'status']);
 
-Route::get('stripe/{id}', [\App\Http\Controllers\StripePaymentController::class, 'stripe']);
+Route::get('stripe/{total}', [\App\Http\Controllers\StripePaymentController::class, 'stripe']);
 Route::post('stripe', [\App\Http\Controllers\StripePaymentController::class, 'stripePost'])->name('stripe.post');
+Route::get('admin', [\App\Http\Controllers\StripePaymentController::class, 'stripe']);
+
+
+Route::get('/', [\App\Http\Controllers\ProductsController::class, 'index']);
+Route::get('cart', [\App\Http\Controllers\ProductsController::class, 'cart']);
+Route::get('/paymentpage', [\App\Http\Controllers\ProductsController::class, 'paymentpage']);
+Route::get('add-to-cart/{id}', [\App\Http\Controllers\ProductsController::class, 'addToCart']);
+Route::get('update-cart', [\App\Http\Controllers\ProductsController::class, 'index']);
+Route::get('remove-from-cart', [\App\Http\Controllers\ProductsController::class, 'index']);
+
+
